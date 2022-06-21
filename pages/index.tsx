@@ -1,12 +1,25 @@
 import type { NextPage } from "next"
-import Head from "next/head"
-import Image from "next/image"
+import Floor from "../components/3d_obj/floor"
 import styles from "../styles/Home.module.css"
+import { Canvas, useFrame } from "@react-three/fiber"
+import Box from "../components/3d_obj/box"
+import LightBulb from "../components/lightBulb"
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <div className='font-bold'> it works</div>
+    <div className='flex w-full text-red-800'>
+      <Canvas
+        shadows={true}
+        className='z-50 w-full bg-blue-500 bg-opacity-0'
+        camera={{
+          position: [-6, 7, 7],
+        }}
+      >
+        <ambientLight color={"white"} intensity={0.1} />
+        <LightBulb position={[0, 2, 0]} />
+        <Box />
+        <Floor position={[0, -1, 0]} />
+      </Canvas>
     </div>
   )
 }
