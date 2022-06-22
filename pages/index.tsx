@@ -4,6 +4,9 @@ import styles from "../styles/Home.module.css"
 import { Canvas, useFrame } from "@react-three/fiber"
 import Box from "../components/3d_obj/box"
 import LightBulb from "../components/lightBulb"
+import { OrbitControls } from "@react-three/drei"
+import Draggable from "../components/3d_obj/draggable"
+import { Suspense } from "react"
 
 const Home: NextPage = () => {
   return (
@@ -17,7 +20,12 @@ const Home: NextPage = () => {
       >
         <ambientLight color={"white"} intensity={0.1} />
         <LightBulb position={[0, 2, 0]} />
-        <Box />
+        <Draggable>
+          <Suspense fallback={null}>
+            <Box rotateX={3} rotateY={0.2} />
+          </Suspense>
+        </Draggable>
+        <OrbitControls />
         <Floor position={[0, -1, 0]} />
       </Canvas>
     </div>
